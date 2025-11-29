@@ -1,0 +1,190 @@
+/**
+ * Midnight Bond – Dark Rofi Theme (Iosevka, Awesome Edition)
+ */
+
+* {
+    font: "Iosevka Nerd Font 16";
+
+    /* Palette */
+    background:           #050608e6;  /* deep, slightly transparent */
+    background-alt:       #060712f2;  /* input + pills */
+    background-alt-soft:  #0b0d14e6;  /* window base */
+
+    foreground:           #d8dee9;
+    foreground-alt:       #9da5b4;
+
+    accent:               #88c0d0;   /* main accent */
+    accent-soft:          #4c7899;
+    accent-urgent:        #bf616a;
+    accent-ok:            #a3be8c;
+
+    border-color:         @accent;
+    separatorcolor:       @background-alt;
+
+    text-color:           @foreground;
+    selected-text-color:  #050608;
+
+    spacing:              4;
+    padding:              4;
+}
+
+/* ───── Window ───── */
+
+window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+
+    width: 1200;
+
+    border: 2px;
+    border-radius: 18;
+    border-color: @border-color;
+
+    padding: 12;
+    background-color: @background-alt-soft;
+}
+
+/* ───── Layout ───── */
+
+mainbox {
+    orientation: vertical;
+    spacing: 10;
+    children: [ inputbar, listview, mode-switcher ];
+}
+
+/* ───── Input bar ───── */
+
+inputbar {
+    spacing: 8;
+    padding: 8 12;
+    border: 0;
+    border-radius: 999;
+    background-color: @background-alt;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text: "drun";
+    padding: 0 10 0 2;
+    foreground: @accent;
+}
+
+entry {
+    placeholder: "type to search…";
+    expand: true;
+    foreground: @foreground;
+}
+
+/* ───── Listview ───── */
+
+listview {
+    lines: 11;
+    spacing: 5;
+    padding: 6 0 0 0;
+
+    dynamic: true;
+    scrollbar: true;
+}
+
+/* Scrollbar */
+scrollbar {
+    handle-width: 4;
+    handle-color: @accent-soft;
+}
+
+/* ───── Elements (rows) ───── */
+
+/* Normal rows (no alternation weirdness) */
+element normal,
+element alternate.normal,
+element normal.active,
+element alternate.active,
+element normal.urgent,
+element alternate.urgent {
+    padding: 6 12;
+    border-radius: 10;
+    background-color: #050608;   /* same for all rows */
+}
+
+/* Selected row – strong accent pill */
+element selected.normal,
+element selected.active,
+element selected.urgent,
+element selected.alternate {
+    padding: 6 12;
+    border-radius: 10;
+    background-color: @accent;
+}
+
+/* Active / urgent subtle borders (optional flair) */
+element normal.active,
+element alternate.active {
+    border: 1;
+    border-color: @accent-ok;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    border: 1;
+    border-color: @accent-urgent;
+}
+
+/* Text styling */
+element-text {
+    foreground: @foreground-alt;
+    highlight: bold;   /* matched text bold */
+}
+
+element selected.normal element-text,
+element selected.active element-text,
+element selected.urgent element-text,
+element selected.alternate element-text {
+    foreground: @selected-text-color;
+}
+
+/* Icons */
+element-icon {
+    size: 18;
+    padding: 0 8 0 0;
+    foreground: @foreground-alt;
+}
+
+element selected.normal element-icon,
+element selected.active element-icon,
+element selected.urgent element-icon,
+element selected.alternate element-icon {
+    foreground: @selected-text-color;
+}
+
+/* ───── Mode switcher (bottom buttons) ───── */
+
+mode-switcher {
+    spacing: 8;
+    padding: 8 4 0 4;
+}
+
+button {
+    padding: 4 14;
+    border-radius: 999;
+    background-color: @background-alt;
+    foreground: @foreground-alt;
+}
+
+button selected {
+    background-color: @accent-soft;
+    foreground: @selected-text-color;
+}
+
+/* ───── Messages (errors, etc.) ───── */
+
+message {
+    padding: 6 10 0 10;
+    border-radius: 10;
+    background-color: @background-alt;
+}
+
+textbox {
+    foreground: @foreground-alt;
+}
+

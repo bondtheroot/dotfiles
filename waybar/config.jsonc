@@ -1,0 +1,114 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 40,
+  "margin-top": 4,
+  "margin-left": 8,
+  "margin-right": 8,
+
+  "modules-left": [
+    "hyprland/window"
+  ],
+
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "backlight",
+    "battery",
+    "pulseaudio",
+    "clock",
+    "tray"
+  ],
+
+  "hyprland/workspaces": {
+    "disable-scroll": false,
+    "all-outputs": true,
+    "format": "{name}",
+    "on-click": "hyprctl dispatch workspace {name}",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "persistent-workspaces": {
+      "*": ["1", "2", "3", "4", "5"]
+    }
+  },
+
+  "hyprland/window": {
+    "format": "  {title}",
+    "rewrite": {
+      "^\\s*$": ""
+    },
+    "max-length": 60,
+    "separate-outputs": false
+  },
+
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "tooltip-format": "{:%A, %d/%m}",
+    "interval": 1
+  },
+
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": "󰈀  {ipaddr}",
+    "format-disconnected": "󰖪  offline",
+    "tooltip-format": "{ifname} | {ipaddr} | {bandwidthDownBits}",
+    "max-length": 20,
+    "on-click": "nm-connection-editor"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} ",
+    "format-muted": "MUTE",
+    "tooltip-format": "Volume: {volume}%",
+    "on-click": "pamixer -t",
+    "on-scroll-up": "pamixer -i 3",
+    "on-scroll-down": "pamixer -d 3",
+    "scroll-step": 3,
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ],
+      "headphones": ""
+    }
+  },
+
+  "battery": {
+    "format": "{icon} ",
+    "format-charging": "",
+    "format-full": " ",
+    "interval": 30,
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15
+    },
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip-format": "Remaining Time: {time}",
+    "tooltip-format-charging": "Full in: {time}"
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 6
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon}",
+    "format-icons": ["", "", "", ""],
+    "on-scroll-up":   "brightnessctl s 1%+",
+    "on-scroll-down": "brightnessctl s 1%-",
+    "on-click-right": "brightnessctl s 0"
+  }
+}
+
